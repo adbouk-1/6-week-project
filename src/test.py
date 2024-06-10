@@ -1,32 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from tqdm import tqdm
 
 sns.set_theme()
-# Function to read data, remove duplicates, and plot
+
+SHOW_PLOTS = False
+SAVE_PLOTS = True
+
 def process_and_plot_binary(csv_file, output_filename, x_column, y_column):
     # Read the CSV file
     df = pd.read_csv(csv_file)
-    
-    # Remove duplicates based on the specified column
-    # df = df.drop_duplicates(subset=[duplicate_column])
-    # filtered_df = df[df['EmergencyReadmissionDateTime'].notnull()]
-    # #Exploratory Data Analysis (EDA)
-    # # sns.pairplot(df)
-    # # sns.distplot(df[x_column])
-    # # sns.countplot(df[x_column])
-
-    # # #Fix or remove outliers
-    # # plt.boxplot(df[x_column])
-    # # plt.boxplot(df[y_column])
-    # # # Plotting the scatter plot
-    # plt.scatter(df[x_column], df[y_column])
-    # plt.title(f'Scatter Plot of {x_column} vs {y_column}')
-    # plt.xlabel(x_column)
-    # plt.ylabel(y_column)
-    # plt.grid(True)
-    # plt.show()
 
     grouped = df.groupby([x_column, y_column]).size().unstack(fill_value=0)
     
@@ -37,9 +20,12 @@ def process_and_plot_binary(csv_file, output_filename, x_column, y_column):
     ax.set_ylabel('Counts')
     plt.xticks(rotation=45)  # Rotate labels to prevent overlap
     plt.legend(title=y_column)
-    # plt.show()
+    
+    if SHOW_PLOTS:
+        plt.show()
 
-    plt.savefig(output_filename, format='png')  # Adjust format as needed
+    if SAVE_PLOTS:
+        plt.savefig(output_filename, format='png')  # Adjust format as needed
 
 def process_and_plot_box(csv_file):
     # Read the CSV file
@@ -50,7 +36,12 @@ def process_and_plot_box(csv_file):
         try:
             plt.boxplot(df[col])
             output_filename = "src/plots/box/" + col + "_box.png"
-            plt.savefig(output_filename, format='png')  # Adjust format as needed
+            
+            if SHOW_PLOTS:
+                plt.show()
+
+            if SAVE_PLOTS:
+                plt.savefig(output_filename, format='png')  # Adjust format as needed
             plt.clf()
         except:
             print(f"Could not plot box for {col}")

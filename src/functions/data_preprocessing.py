@@ -118,11 +118,3 @@ def preProcessCSV(df: pd.DataFrame, drop_duplicates=False, y_column='IsDeadWithi
         print(y.shape)
     
     return x, y
-
-def plotCorrelationMatrix(df):
-    
-    corr = df.corr()
-    mask = np.triu(np.ones_like(corr, dtype=bool))
-    sns.heatmap(corr, cmap='coolwarm', mask=mask, annot=True, fmt='.1g', xticklabels=corr.columns, yticklabels=corr.columns, cbar=False)
-    plt.xticks(fontsize=8)  # Rotate labels by 45 degrees
-    plt.show()
