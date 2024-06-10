@@ -160,7 +160,7 @@ def trainModel(X_train, X_test, y_train, y_test, classifier="LogisticRegression"
     return model
 
 # Setup the logistic regression model
-def optimiseHyperParameters(x, y, classifier="LogisticRegression"):
+def optimiseHyperParameters(X_train, X_test, y_train, y_test, classifier="LogisticRegression"):
     """
     Optimize hyperparameters for a given classifier using grid search or randomized search.
 
@@ -172,8 +172,6 @@ def optimiseHyperParameters(x, y, classifier="LogisticRegression"):
     Returns:
     None
     """
-
-    X_train, X_test, y_train, y_test = splitTrainingSet(x, y, test_size = 0.3, random_state = 0)
 
     if classifier == "LogisticRegression":
 

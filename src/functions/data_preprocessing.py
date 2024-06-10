@@ -1,5 +1,5 @@
+from datetime import datetime
 import pandas as pd
-import datetime
 
 PRINT_INFO = False
 
@@ -7,6 +7,8 @@ PRINT_INFO = False
 def convert_to_int(df_column):
     """
     Convert a column of a DataFrame to integer values using pandas.factorize.
+    This was done before oneHotEncoding was used to convert the columns to integers. 
+    This was not used in the final analysis
 
     Parameters:
     df_column (pandas.Series): The column to be converted.
@@ -17,13 +19,12 @@ def convert_to_int(df_column):
 
     """
 
-    #This was done before oneHotEncoding was used to convert the columns to integers. This was not used in the final analysis
     new_col, uniques = pd.factorize(df_column)
 
     return new_col, uniques
 def preProcessColumns(csv_file, convert_to_int=False):
     """
-    Preprocesses the columns of a CSV file.
+    Preprocesses the columns of a CSV file, by calculating any additional columns needed for the model and converting string columns to integers.
 
     Args:
         csv_file (str): The path to the CSV file.
