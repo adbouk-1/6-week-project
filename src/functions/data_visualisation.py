@@ -1,13 +1,15 @@
-from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, precision_recall_curve, average_precision_score
-from sklearn.model_selection import cross_val_score
-from sklearn.tree import export_graphviz
-from scipy.stats import ttest_ind
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, precision_recall_curve, average_precision_score # type: ignore
+from sklearn.model_selection import cross_val_score # type: ignore
+from sklearn.tree import export_graphviz # type: ignore
+from scipy.stats import ttest_ind # type: ignore
 import pandas as pd
-import matplotlib.pyplot as plt
-import category_encoders as ce
-import seaborn as sns
+import matplotlib.pyplot as plt # type: ignore
+import category_encoders as ce # type: ignore
+import seaborn as sns # type: ignore
 import numpy as np
-import graphviz
+import graphviz # type: ignore
+
+PRINT_INFO = False
 
 def plotCorrelationMatrix(df):
     """
